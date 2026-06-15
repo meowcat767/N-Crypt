@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>site.meowcat</groupId>
-    <artifactId>N-Crypt</artifactId>
+    <artifactId>ShieldCrypt</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
