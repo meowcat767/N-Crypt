@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="site.meowcat.ui.Interface">
   <grid id="27dc6" binding="contentFrame" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+    <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="1102" height="707"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="c052c" binding="menuBarPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="c052c" binding="menuBarPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -18,57 +18,271 @@
         <children>
           <toolbar id="29437" binding="menuBar">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="20"/>
               </grid>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="98234" class="javax.swing.JButton" binding="openButton">
+                <constraints/>
+                <properties>
+                  <text value="Open"/>
+                </properties>
+              </component>
+              <component id="98235" class="javax.swing.JButton" binding="saveButton">
+                <constraints/>
+                <properties>
+                  <text value="Save"/>
+                </properties>
+              </component>
+              <component id="98236" class="javax.swing.JButton" binding="exitButton">
+                <constraints/>
+                <properties>
+                  <text value="Exit"/>
+                </properties>
+              </component>
+            </children>
           </toolbar>
           <tabbedpane id="f2237" binding="tabbedPane1" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="200" height="200"/>
+                <preferred-size width="600" height="400"/>
               </grid>
             </constraints>
             <properties/>
-            <border type="bevel-lowered"/>
+            <border type="none"/>
             <children>
-              <grid id="2c47a" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+              <grid id="2c47a" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="10" bottom="10" right="10"/>
                 <constraints>
                   <tabbedpane title="Keys"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="fbce9" class="javax.swing.JTextArea" binding="privateKeyArea">
+                  <component id="6e6e2" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="50"/>
-                      </grid>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Private Key:"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="a68d0">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
-                  </component>
-                  <component id="5787d" class="javax.swing.JTextArea" binding="publicKeyArea">
+                    <border type="none"/>
+                    <children>
+                      <component id="fbce9" class="javax.swing.JTextArea" binding="privateKeyArea">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <component id="45258" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="50"/>
-                      </grid>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Public Key:"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="d2235">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
-                  </component>
+                    <border type="none"/>
+                    <children>
+                      <component id="5787d" class="javax.swing.JTextArea" binding="publicKeyArea">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
-              <scrollpane id="4d938">
+              <grid id="9a649" binding="textEncryptPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="10" bottom="10" right="10"/>
                 <constraints>
-                  <tabbedpane title="Encrypt Text"/>
+                  <tabbedpane title="Text"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
-                <children/>
-              </scrollpane>
+                <children>
+                  <component id="74837" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Input/Output Text:"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="78374">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="f1568" class="javax.swing.JTextArea" binding="textIOArea">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <grid id="4a44b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="f1567" class="javax.swing.JButton" binding="encryptButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Encrypt"/>
+                        </properties>
+                      </component>
+                      <component id="f1569" class="javax.swing.JButton" binding="decryptButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Decrypt"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="83746" binding="imageEncryptPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="10" bottom="10" right="10"/>
+                <constraints>
+                  <tabbedpane title="Image"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="12345" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="23456" class="javax.swing.JButton" binding="selectImageButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Select Image"/>
+                        </properties>
+                      </component>
+                      <component id="34567" class="javax.swing.JLabel" binding="imagePathLabel">
+                        <constraints/>
+                        <properties>
+                          <text value="No image selected"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <scrollpane id="45678">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="56789" class="javax.swing.JLabel" binding="imagePreviewLabel">
+                        <constraints/>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <text value="Image Preview"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <grid id="67890" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="78901" class="javax.swing.JButton" binding="encryptImageButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Encrypt Image"/>
+                        </properties>
+                      </component>
+                      <component id="89012" class="javax.swing.JButton" binding="decryptImageButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Decrypt Image"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="1a2b3" binding="fileEncryptPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="10" bottom="10" right="10"/>
+                <constraints>
+                  <tabbedpane title="File"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="f1234" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="b1234" class="javax.swing.JButton" binding="selectFileButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Select File"/>
+                        </properties>
+                      </component>
+                      <component id="l1234" class="javax.swing.JLabel" binding="filePathLabel">
+                        <constraints/>
+                        <properties>
+                          <text value="No file selected"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <vspacer id="s1234">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <grid id="g1234" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="e1234" class="javax.swing.JButton" binding="encryptFileButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Encrypt File"/>
+                        </properties>
+                      </component>
+                      <component id="d1234" class="javax.swing.JButton" binding="decryptFileButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Decrypt File"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
             </children>
           </tabbedpane>
         </children>
