@@ -114,7 +114,13 @@
                       <component id="g1235" class="javax.swing.JButton" binding="generateKeysButton">
                         <constraints/>
                         <properties>
-                          <text value="Generate Key"/>
+                          <text value="Generate AES Key"/>
+                        </properties>
+                      </component>
+                      <component id="g1236" class="javax.swing.JButton" binding="generateRSAKeyPairButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Generate RSA Key Pair"/>
                         </properties>
                       </component>
                     </children>
