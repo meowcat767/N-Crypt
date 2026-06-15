@@ -88,6 +88,134 @@ public class Interface {
             }
         });
 
+        encryptButton.addActionListener(e -> {
+            String text = textIOArea.getText();
+            if (text.isEmpty()) {
+                JOptionPane.showMessageDialog(contentFrame, "Please enter some text to encrypt.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (keyManager.getSecretKey() == null) {
+                JOptionPane.showMessageDialog(contentFrame, "Please generate or load an AES secret key first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                String encryptedText = CryptoManager.encryptText(text, keyManager.getSecretKey());
+                textIOArea.setText(encryptedText);
+                JOptionPane.showMessageDialog(contentFrame, "Text encrypted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(contentFrame, "Error during text encryption: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        decryptButton.addActionListener(e -> {
+            String encryptedText = textIOArea.getText();
+            if (encryptedText.isEmpty()) {
+                JOptionPane.showMessageDialog(contentFrame, "Please enter some encrypted text to decrypt.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (keyManager.getSecretKey() == null) {
+                JOptionPane.showMessageDialog(contentFrame, "Please generate or load an AES secret key first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                String decryptedText = CryptoManager.decryptText(encryptedText, keyManager.getSecretKey());
+                textIOArea.setText(decryptedText);
+                JOptionPane.showMessageDialog(contentFrame, "Text decrypted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(contentFrame, "Error during text decryption: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        encryptImageButton.addActionListener(e -> {
+            String imagePath = imagePathLabel.getText();
+            if (imagePath.equals("No image selected")) {
+                JOptionPane.showMessageDialog(contentFrame, "Please select an image first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (keyManager.getSecretKey() == null) {
+                JOptionPane.showMessageDialog(contentFrame, "Please generate or load an AES secret key first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                File inputFile = new File(imagePath);
+                File outputFile = new File(imagePath + ".enc");
+                CryptoManager.encryptFile(inputFile, outputFile, keyManager.getSecretKey());
+                JOptionPane.showMessageDialog(contentFrame, "Image encrypted successfully!\nSaved to: " + outputFile.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(contentFrame, "Error during image encryption: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        decryptImageButton.addActionListener(e -> {
+            String imagePath = imagePathLabel.getText();
+            if (imagePath.equals("No image selected")) {
+                JOptionPane.showMessageDialog(contentFrame, "Please select an encrypted image first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (keyManager.getSecretKey() == null) {
+                JOptionPane.showMessageDialog(contentFrame, "Please generate or load an AES secret key first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                File inputFile = new File(imagePath);
+                String outputFileName = imagePath.endsWith(".enc") ? imagePath.substring(0, imagePath.length() - 4) : imagePath + ".dec";
+                File outputFile = new File(outputFileName);
+                CryptoManager.decryptFile(inputFile, outputFile, keyManager.getSecretKey());
+                JOptionPane.showMessageDialog(contentFrame, "Image decrypted successfully!\nSaved to: " + outputFile.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(contentFrame, "Error during image decryption: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        decryptFileButton.addActionListener(e -> {
+            String filePath = filePathLabel.getText();
+            if (filePath.equals("No file selected")) {
+                JOptionPane.showMessageDialog(contentFrame, "Please select an encrypted file first.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Select the .key file for decryption");
+            int result = fileChooser.showOpenDialog(contentFrame);
+            if (result != JFileChooser.APPROVE_OPTION) return;
+            File keyFile = fileChooser.getSelectedFile();
+
+            try {
+                // 1. Load Private Key (assuming it's loaded in KeyManager)
+                if (keyManager.getPrivateKey() == null) {
+                    JOptionPane.showMessageDialog(contentFrame, "Private key missing in KeyManager. Please load your keys.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // 2. Decrypt AES Key
+                byte[] encryptedAESKey = Files.readAllBytes(keyFile.toPath());
+                javax.crypto.SecretKey aesKey = CryptoManager.decryptAESKey(encryptedAESKey, keyManager.getPrivateKey());
+
+                // 3. Decrypt File
+                File inputFile = new File(filePath);
+                String outputFileName = filePath.endsWith(".enc") ? filePath.substring(0, filePath.length() - 4) : filePath + ".dec";
+                File outputFile = new File(outputFileName);
+                CryptoManager.decryptFile(inputFile, outputFile, aesKey);
+
+                JOptionPane.showMessageDialog(contentFrame, "File decrypted successfully!\nSaved to: " + outputFile.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(contentFrame, "Error during decryption: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
         selectImageButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(contentFrame);

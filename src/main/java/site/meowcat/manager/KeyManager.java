@@ -115,6 +115,10 @@ public class KeyManager {
         return sb.toString();
     }
 
+    public PrivateKey getPrivateKey() {
+        return privateKey;
+    }
+
     public boolean hasKey() {
         return secretKey != null;
     }
